@@ -13,7 +13,7 @@ Use your favorite package manager!
 
 Using `vim-plug`:
 
-```
+```vim
 Plug "rktjmp/lush.nvim"
 Plug "Scysta/pink-panic"
 ```
