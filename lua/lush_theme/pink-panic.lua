@@ -65,16 +65,17 @@ local theme = lush(function()
     CursorColumn { CursorLine }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     Search       { fg = Normal.fg.da(10), bg = hsl(283, 80, 80) }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
     Substitute   { Search }, -- |:substitute| replacement text highlighting
-    VertSplit    { bg = Substitute.fg }, -- Column separating vertically split windows
+    VertSplit    { bg = Search.fg }, -- Column separating vertically split windows
     IncSearch    { Search }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     CursorLineNr { fg = Folded.bg.da(20), gui = "bold" }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     LineNr       { fg = CursorLineNr.fg.li(40) }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     MatchParen   { fg = hsl("#11A19C").li(50), bg = hsl("#11A19C") }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     Visual       { fg = hsl("#A9331B"), bg = hsl("#FD7096") }, -- Visual mode selection
-    Winseparator { bg = Substitute.fg }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
+    Winseparator { fg = Folded.bg.da(2) }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
     SignColumn   { bg = Normal.bg.da(3) }, -- Column where |signs| are displayed
     Whitespace   { LineNr }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
     EndOfBuffer  { LineNr }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    Directory    { fg = Visual.bg }, -- Directory names (and other special names in listings)
 
     StatusLine   { bg = Normal.bg }, -- Status line of current window
     StatusLineNC { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
@@ -91,7 +92,6 @@ local theme = lush(function()
     -- Cursor       { }, -- Character under the cursor
     -- lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM     { }, -- Like Cursor, but used when in IME mode |CursorIM|
-    -- Directory    { }, -- Directory names (and other special names in listings)
     -- DiffText     { }, -- Diff mode: Changed text within a changed line |diff.txt|
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
