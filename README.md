@@ -22,8 +22,8 @@ Plug "Scysta/pink-panic"
 
 Type `:colorscheme pink-panic` or add this line somewhere in your nvim config:
 
-```vimscript
-# Vimscript
+```vim
+" Vimscript
 colorscheme pink-panic
 ```
 
