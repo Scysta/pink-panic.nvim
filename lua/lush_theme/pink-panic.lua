@@ -59,7 +59,7 @@ local theme = lush(function()
     -- to reorder items as you go.
     --
     -- See :h highlight-groups
-    Normal       { bg = hsl(330, 100, 92), fg = hsl(285, 90, 25) }, -- Normal text
+    Normal       { bg = hsl(330, 100, 93), fg = hsl(285, 90, 25) }, -- Normal text
     CursorLine   { bg = Normal.bg.li(30) }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     Folded       { bg = Normal.bg.da(10) }, -- Line used for closed folds
     CursorColumn { CursorLine }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
