@@ -17,7 +17,7 @@ Using `vim-plug`:
 
 ```vim
 Plug "rktjmp/lush.nvim"
-Plug "Scysta/pink-panic"
+Plug "Scysta/pink-panic.nvim"
 ```
 
 ## Usage
