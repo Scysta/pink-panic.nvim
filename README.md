@@ -1,5 +1,6 @@
-A Lush Theme for Neovim.
+# Pink Panic - A Lush Theme for Neovim.
 ===
 
-See: http://git.io/lush.nvim for more information on Lush and a helper script
-to setup your repo clone.
+A pretty pink colorscheme for Neovim made with Lush, born in the despair of not finding cute light themes. It may not be the easiest on the eyes, but I think it's really pretty.
+
+I hope you like it!
