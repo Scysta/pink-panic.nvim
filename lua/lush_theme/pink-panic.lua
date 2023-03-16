@@ -165,7 +165,7 @@ local theme = lush(function()
     -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
     -- Debug          { }, --   Debugging statements
 
-    -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
+    Underlined     { gui = "underline, italic" }, -- Text that stands out, HTML links
     -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
     -- Error          { }, -- Any erroneous construct
     -- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
@@ -237,17 +237,38 @@ local theme = lush(function()
     TSConstructor        { TSPunctBracket } , -- Constructor calls and definitions: `{}` in Lua, and Java constructors.
     TSPunctDelimiter     { } , -- Punctuation delimiters: Periods, commas, semicolons, etc.
     TSConstBuiltin       { fg = TSConstant.fg.da(25) } , -- Built-in constant values: `nil` in Lua.
+    TSStrong             { fg = TSRepeat.fg, gui = "bold" } , -- Text to be represented in bold.
+    TSEmphasis           { fg = TSDefine.fg, gui = "italic" } , -- Text to be represented with emphasis.
+    TSUnderline          { fg = TSEmphasis.fg, gui = "italic, underline" } , -- Text to be represented with an underline.
+    TSStrike             { fg = TSStrong.fg, gui = "strikethrough, bold" } , -- Strikethrough text.
+    TSAttribute          { TSInclude } , -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
+    TSCharacterSpecial   { TSOperator } , -- Special characters.
+    TSConstMacro         { TSConstructor } , -- Constants defined by macros: `NULL` in C.
+    TSException          { TSConstBuiltin } , -- Exception related keywords: `try`, `except`, `finally` in Python.
+    TSKeywordOperator    { TSConstructor } , -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
+    TSKeywordReturn      { TSStrong } , -- Keywords like `return` and `yield`.
+    TSStringEscape       { fg = TSVariableBuiltin.fg.li(40) } , -- Escape characters within a string: `\n`, `\t`, etc.
+    TSStringSpecial      { TSConstructor } , -- Strings with special meaning that don't fit into the previous categories.
+    TSSymbol             { TSOperator } , -- Identifiers referring to symbols or atoms.
+    TSTag                { fg = TSStrong.fg.da(20) } , -- Tags like HTML tag names.
+    TSTagAttribute       { TSConstructor } , -- HTML tag attributes.
+    TSTagDelimiter       { fg = TSTag.fg.rotate(180).da(30) } , -- Tag delimiters like `<` `>` `/`.
+    TSText               { fg = Normal.fg.li(15) } , -- Non-structured text. Like text in a markup language.
+    TSTitle              { TSStrong } , -- Text that is part of a title.
+    TSLiteral            { TSText } , -- Literal or verbatim text.
+    TSURI                { fg = TSException.fg, gui = "underline, bold" } , -- URIs like hyperlinks or email addresses.
+    TSMath               { fg = TSStringEscape.fg.rotate(29).da(50) } , -- Math environments like LaTeX's `$ ... $`
+    TSTextReference      { fg = TSText.fg.rotate(10).li(20) } , -- Footnotes, text references, citations, etc.
+    TSEnvironment        { TSText } , -- Text environments of markup languages.
+    TSEnvironmentName    { TSStringSpecial } , -- Text/string indicating the type of text environment. Like the name of a `\begin` block in LaTeX.
+    TSNote               { fg = TSStrong.fg } , -- Text representation of an informational note.
+    TSWarning            { fg = TSNote.fg.rotate(70).li(10) } , -- Text representation of a warning note.
+    TSDanger             { fg = TSNote.fg.rotate(20).li(10) } , -- Text representation of a danger note.
 
-    -- TSAttribute          { } , -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
-    -- TSCharacterSpecial   { } , -- Special characters.
-    -- TSConstMacro         { } , -- Constants defined by macros: `NULL` in C.
+    -- TSLabel              { } , -- GOTO labels: `label:` in C, and `::label::` in Lua.
     -- TSDebug              { } , -- Debugging statements.
     -- TSError              { } , -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
-    -- TSException          { } , -- Exception related keywords: `try`, `except`, `finally` in Python.
     -- TSFuncMacro          { } , -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
-    -- TSKeywordOperator    { } , -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
-    -- TSKeywordReturn      { } , -- Keywords like `return` and `yield`.
-    -- TSLabel              { } , -- GOTO labels: `label:` in C, and `::label::` in Lua.
     -- TSNamespace          { } , -- Identifiers referring to modules and namespaces.
     -- TSNone               { } , -- No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
     -- TSParameterReference { } , -- References to parameters of a function.
@@ -256,27 +277,6 @@ local theme = lush(function()
     -- TSPunctSpecial       { } , -- Special punctuation that doesn't fit into the previous categories.
     -- TSStorageClass       { } , -- Keywords that affect how a variable is stored: `static`, `comptime`, `extern`, etc.
     -- TSStringRegex        { } , -- Regular expression literals.
-    -- TSStringEscape       { } , -- Escape characters within a string: `\n`, `\t`, etc.
-    -- TSStringSpecial      { } , -- Strings with special meaning that don't fit into the previous categories.
-    -- TSSymbol             { } , -- Identifiers referring to symbols or atoms.
-    -- TSTag                { } , -- Tags like HTML tag names.
-    -- TSTagAttribute       { } , -- HTML tag attributes.
-    -- TSTagDelimiter       { } , -- Tag delimiters like `<` `>` `/`.
-    -- TSText               { } , -- Non-structured text. Like text in a markup language.
-    -- TSStrong             { } , -- Text to be represented in bold.
-    -- TSEmphasis           { } , -- Text to be represented with emphasis.
-    -- TSUnderline          { } , -- Text to be represented with an underline.
-    -- TSStrike             { } , -- Strikethrough text.
-    -- TSTitle              { } , -- Text that is part of a title.
-    -- TSLiteral            { } , -- Literal or verbatim text.
-    -- TSURI                { } , -- URIs like hyperlinks or email addresses.
-    -- TSMath               { } , -- Math environments like LaTeX's `$ ... $`
-    -- TSTextReference      { } , -- Footnotes, text references, citations, etc.
-    -- TSEnvironment        { } , -- Text environments of markup languages.
-    -- TSEnvironmentName    { } , -- Text/string indicating the type of text environment. Like the name of a `\begin` block in LaTeX.
-    -- TSNote               { } , -- Text representation of an informational note.
-    -- TSWarning            { } , -- Text representation of a warning note.
-    -- TSDanger             { } , -- Text representation of a danger note.
     -- TSVariable           { } , -- Variable names that don't fit into other categories.
   }
 end)
